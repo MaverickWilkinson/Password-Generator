@@ -10,6 +10,51 @@ function writePassword() {
 
 }
 
+function generateLowerChar(){
+//chooses the number to associate with the letter
+ alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+ return alphabet[(Math.floor(Math.random() * Math.floor(26)))]
+}
+function generateNumber(){
+  //returns a number between 0 and 9
+  var genNum = (Math.floor(Math.random() * Math.floor(10)));
+  genNum = genNum.toString();
+  return genNum;
+}
+function generateSpecial(){
+ specialAlphabet = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+","[","]","{","}","|",";",":","'","<",">",",",".","?","/"];
+ return specialAlphabet[(Math.floor(Math.random() * Math.floor(28)))]
+}
+
+function chooseCharType(){
+  while (true){
+    var choice = (Math.floor(Math.random() * Math.floor(4)) + 1);
+    //this gives a number between 1 and 4
+    //returning 1 means the character will be a lowercase letter
+    //returning 2 means the character will be an uppercase letter
+    //returning 3 means the character will be a number
+    //returning 4 means the character will be a special character
+    if ((lowerCase == true && choice == 1) || (upperCase == true && choice == 2) || (numericals == true && choice == 3) || (specials == true && choice == 4)){
+      return choice; //this return, in theory, should break out of the while loop and return the value only if it is one of the results the user wanted.
+    }
+  }
+}
+
+function generateChar(){
+  thisCharType = chooseCharType();
+  switch(thisCharType){
+    case 1:
+      return generateLowerChar();
+    case 2:
+      return generateLowerChar().toUpperCase();
+    case 3:
+      return generateNumber();
+    case 4:
+      return generateSpecial();
+  }
+}
+
+
 function generatePassword() {
   //sets up the variables needed for the generation. this will be done every time the button is pressed.
   var numCharConfirm = false;
