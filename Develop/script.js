@@ -1,9 +1,31 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+//sets up the variables needed for the generation. this will be done every time the button is pressed.
+var numCharConfirm = false;
+var charTypesConfirm = false;
+
+var lowerCase = false;
+var upperCase = false;
+var numericals = false;
+var specials = false;
+var passwordchararray
+var password
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  passwordchararray = generatePassword();
+  password = new String(passwordchararray);
+  
+  for (i = 0; i < passwordchararray.length * 2; i++){
+    //this part was annoying. the replace function only replaces 1 element in the array so you need to do it as many times as there are characters to remove all of the commas between the items.
+  password = password.replace(",", "");
+  }
+  
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -22,8 +44,8 @@ function generateNumber(){
   return genNum;
 }
 function generateSpecial(){
- specialAlphabet = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+","[","]","{","}","|",";",":","'","<",">",",",".","?","/"];
- return specialAlphabet[(Math.floor(Math.random() * Math.floor(28)))]
+ specialAlphabet = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+","[","]","{","}","|",";",":","'","<",">",".","?","/"];
+ return specialAlphabet[(Math.floor(Math.random() * Math.floor(27)))]
 }
 
 function chooseCharType(){
@@ -56,24 +78,15 @@ function generateChar(){
 
 
 function generatePassword() {
-  //sets up the variables needed for the generation. this will be done every time the button is pressed.
-  var numCharConfirm = false;
-  var charTypesConfirm = false;
-
-  var lowerCase = false;
-  var upperCase = false;
-  var numericals = false;
-  var specials = false;
-
   //while loop so that I can varify and reprompt the user if they give invalid inputs
   while(numCharConfirm == false){ 
-    var numChar = prompt("How many characters would you like? only passwords from 8 characters to 128 characters are allowed.")
+    var numChar = prompt("How many characters would you like? only passwords from 8 characters to 128 characters are allowed.");
     if (numChar < 8 || numChar > 128){ //validates that they gave a proper number. if this fails, the program exits the if statement and goes through the while loop again.
-      alert("Please give a value that is 8 or more, and 128 or less.")
+      alert("Please give a number that is 8 or more, and 128 or less.")
     }
     else{
       //creates a variable for the array of characters that will be eventually stringed together to form the sting value of the password. it uses the number of characters the user gave for its length.
-      var passwordStringArray = new Array[numChar]
+      var passwordStringArray = new Array();
       numCharConfirm = true;
     }
   }
@@ -93,10 +106,7 @@ function generatePassword() {
 
 
   for (var i = 0; i < numChar; i++){
-    passwordStringArray[i] = generateChar(); 
+    passwordStringArray.push(generateChar())
   }
+  return passwordStringArray;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
-
