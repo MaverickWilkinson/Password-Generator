@@ -1,4 +1,12 @@
 # 03 JavaScript: Password Generator
 
 ## The Project
-This password Generator was given by my instructor with code pre built
+This password Generator was given by my instructor with code pre built to have a button that does nothing when you press it. my task was to add the javascript code necessary to have the program generate a random unorganized password consisting of the character types requested by the user when they pressed the button and for the program to display the password on the screen.
+
+## The Process
+
+* I began by writing a function that would be the beginning of the "generatePassword()" function, which would begin collecting data from the user through prompts and confirms. These asked the user how long they wanted the password to be, and whether or not they wanted uppercase, lowercase, numbers, and special characters.
+* The next step was all about figuring out how I would incorperate the character differences into the randomly generated password. I decided to go all out with the randomness and make the program randomly pick between the 4 options when generating each character with a seperate function. The only problem with this is that it did not take the preferance of the user into account in regards to character types, so I fixed this by putting in a condition that states that if it generates a random number that links to a character choice the user did not want, it would simply toss it and generate a new number to choose the character until it generated a valid number to use.
+* Once the character type is chosen, another function would run alongside the type choosing function which would generate a random character from a list array that contained all possible characters from that type. this gave the character which would be places in this slot of the string array that would eventually be glued together into a single string that would make up the user's password.
+* I ran into a problem where I tried to make an array that was the length of an integer value. This either doesn't work in Javascript or I incorperated it incorrectly which would make the array only be initialized with 1 or 3 slots. This was resolved by substituting some code that revolved around that and used push commands to add content to the array, though finding this issue took a majority of the time I spent on the project.
+* After spending some more time trying to stick the array of char data into one single string, I was finally able to get a single functional string value that inbedded the commas seperating the array into the string causing further issues, though putting a simple for loop that combs through the password deleting all of the commas solved the issue, making the program work as intended by the given readme.

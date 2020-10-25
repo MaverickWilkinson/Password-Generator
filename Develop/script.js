@@ -21,7 +21,7 @@ function writePassword() {
   passwordchararray = generatePassword();
   password = new String(passwordchararray);
   
-  for (i = 0; i < passwordchararray.length * 2; i++){
+  for (i = 0; i < passwordchararray.length; i++){
     //this part was annoying. the replace function only replaces 1 element in the array so you need to do it as many times as there are characters to remove all of the commas between the items.
   password = password.replace(",", "");
   }
